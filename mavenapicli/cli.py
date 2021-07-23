@@ -13,6 +13,7 @@ class ComplexCLI(click.MultiCommand):
         commands.sort()
         return commands
 
+
     def get_command(self, ctx, name):
         try:
             mod = __import__(f"mavenapicli.commands.{name}", None, None, ["cli"])
@@ -25,4 +26,3 @@ class ComplexCLI(click.MultiCommand):
 def cli():
     '''A CLI tool to perform basic operations with Maven API'''
     pass
-    #click.echo('Hello man')

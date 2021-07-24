@@ -1,5 +1,5 @@
 import click
-from mavenapicli.service.service_mavenAPI import MavenAPI 
+from mavenapicli.services.service_mavenAPI import MavenAPI 
 from mavenapicli.classes.artifact import Artifact 
 
 
@@ -9,6 +9,7 @@ def cli():
     GET details about an artifact from Maven API endpoint
     '''
     pass
+
 
 @click.command()
 @click.argument('artifact_id')
@@ -24,10 +25,12 @@ def get_versions_dates(artifact_id, group_id):
     '''
     maven_API = MavenAPI()
     artifact = Artifact(artifact_id=artifact_id, group_id=group_id)
-    #print(artifact.__dict__)
     artifact_version_date_map = maven_API.get_artifact_version_date_map(artifact=artifact)
-    artifact.version_date_map = artifact_version_date_map
-    click.echo(f'Artifact versions and related dates  -> {artifact.__dict__}')
+    if artifact_version_date_map == {}:
+        click.echo('This artifact has not versions, it may not exist or there is a typo in the ARTIFACT_ID or/and GROUP_ID passed.')
+    else:        
+        artifact.version_date_map = artifact_version_date_map
+        click.echo(f'Artifact versions and related dates -> {artifact.__dict__}')
 
 
 cli.add_command(get_versions_dates)

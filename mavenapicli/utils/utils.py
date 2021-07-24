@@ -8,6 +8,7 @@ def from_time_in_millis_to_extended_date(timestamp_in_millis):
     extended_date = datetime.datetime.fromtimestamp(timestamp_in_millis/1000.0)
     return extended_date
 
+
 def from_time_in_millis_to_ymd_date(timestamp_in_millis):
     '''
     Starting from a date in millis returns it in the following format ->  YYYY-mm-dd

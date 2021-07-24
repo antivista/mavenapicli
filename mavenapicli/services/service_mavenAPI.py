@@ -1,6 +1,7 @@
 import requests
 import urllib
 import mavenapicli.utils.utils as utils
+import sys
 
 
 class MavenAPI:
@@ -20,6 +21,13 @@ class MavenAPI:
             'core': 'gav', 'rows': '10', 'wt': 'json'}
         params = urllib.parse.urlencode(params)
         response = requests.get(api_endpoint, params=params) 
+
+        try:
+            response.raise_for_status()
+        except requests.exceptions.HTTPError as err:
+            print("Error ->", str(err))
+            sys.exit()
+
         json_response = response.json()
         return json_response
 
@@ -34,11 +42,16 @@ class MavenAPI:
         artifact -> Artifact
             it must have not None values for group_id and artifact_id
         '''
-        artifact_details = self.retrieve_artifact_full_response(artifact=artifact)
-        artifacts = artifact_details['response']['docs']
-        artifact_version_date_map = {}
-        for artifact in artifacts:
-            ymd_date = utils.from_time_in_millis_to_ymd_date(timestamp_in_millis=artifact['timestamp'])
-            artifact_version_date_map[artifact['v']] = ymd_date
+        artifact_full_response = self.retrieve_artifact_full_response(artifact=artifact)
+        
+        if artifact_full_response['response']['numFound'] == 0:
+            return {}
+        else:
+            artifacts = artifact_full_response['response']['docs']
+            artifact_version_date_map = {}
+            for artifact in artifacts:
+                ymd_date = utils.from_time_in_millis_to_ymd_date(timestamp_in_millis=artifact['timestamp'])
+                artifact_version_date_map[artifact['v']] = ymd_date
 
-        return artifact_version_date_map
+            return artifact_version_date_map
+        

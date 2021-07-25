@@ -7,7 +7,7 @@ A cli tool that uses Maven's API to get info about Maven artifacts.
 
 ## Installation
 1. Enter in the project directory (working dir)
-2. Create a Python virtual enviroment in the working dir and activate it
+2. Create a Python virtual enviroment in the working dir named "venv" and activate it
 3. Run -> `pip install .`
 
 To check installation run -> `mavenapicli <command>`

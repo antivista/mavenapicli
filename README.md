@@ -11,6 +11,7 @@ A cli tool that uses Maven's API to get info about Maven artifacts
 3. `pip install .`
 
 To check installation run -> `mavenapicli <command>`\n
+
 You should have the following output:
 ```
 Usage: mavenapicli [OPTIONS] COMMAND [ARGS]...

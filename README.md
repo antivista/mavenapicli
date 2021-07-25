@@ -1,5 +1,5 @@
 # Maven API CLI
-A cli tool that uses Maven's API to get info about Maven artifacts
+A cli tool that uses Maven's API to get info about Maven artifacts.
 
 # Basic Requirements
 * (Suggested) Python 3.9.6 version

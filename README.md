@@ -1,11 +1,11 @@
 # Maven API CLI
 A cli tool that uses Maven's API to get info about Maven artifacts.
 
-# Basic Requirements
+## Basic Requirements
 * (Suggested) Python 3.9.6 version
 * (Suggested) pip 21.1.3 version
 
-# Installation
+## Installation
 1. Put the project into an empty directory (working dir)
 2. Create a Python virtual enviroment in the working dir and activate it
 3. `pip install .`
@@ -25,15 +25,15 @@ Commands:
   cmd_artifact_details  GET details about an artifact from Maven API
 ```
 
-# Configuration
+## Configuration
 Modify `config.ini` to define:
 * Max number of results to have making a request
 * Log level
 
-# Commands
+## Commands
 * `cmd_artifact_detail` - Arguments: `ARTIFACT_ID` `GROUP_ID`
-## Example
+### Example
 `mavenapicli cmd_artifact_details get-versions-dates maven-compiler-plugin org.apache.maven.plugins`
 
-# Testing
+## Testing
 Run -> `python3 -m unittest`

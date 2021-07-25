@@ -1,6 +1,5 @@
 from unittest import TestCase, mock
 from mavenapicli.services.service_mavenAPI import MavenAPI
-from mavenapicli.classes.artifact import Artifact 
 
 
 class TestRetrieveArtifactFullResponse(TestCase):
@@ -9,9 +8,8 @@ class TestRetrieveArtifactFullResponse(TestCase):
         self.patcher = mock.patch('mavenapicli.services.service_mavenAPI.MavenAPI.retrieve_artifact_full_response', return_value=return_value)
         self.patcher.start()
 
-
     
-    def test_check_json_response_type(self):
+    def test_json_response_type(self):
         '''
         Check if the response is in JSON format
         '''
@@ -21,8 +19,7 @@ class TestRetrieveArtifactFullResponse(TestCase):
         self.assertIsInstance(actual_result, dict)
 
 
-
-    def test_check_json_response_structure(self):
+    def test_json_response_structure(self):
         '''
         Check that the fields used in the JSON response are present
         '''

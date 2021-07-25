@@ -1,7 +1,9 @@
+import mavenapicli.utils.config as config 
 import requests
 import urllib
 import mavenapicli.utils.utils as utils
 import sys
+import logging
 
 
 class MavenAPI:
@@ -18,17 +20,18 @@ class MavenAPI:
         '''
         api_endpoint = self.base_url + 'solrsearch/select'
         params = {'q': 'g:' + artifact.group_id + ' AND a:' + artifact.artifact_id, \
-            'core': 'gav', 'rows': '10', 'wt': 'json'}
+            'core': 'gav', 'rows': config.N_ROWS, 'wt': 'json'}
         params = urllib.parse.urlencode(params)
         response = requests.get(api_endpoint, params=params) 
 
         try:
             response.raise_for_status()
         except requests.exceptions.HTTPError as err:
-            print("Error ->", str(err))
+            logging.critical(f'Error -> {err}')
             sys.exit()
 
         json_response = response.json()
+        logging.debug(f'Complete JSON response {json_response}')
         return json_response
 
 

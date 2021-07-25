@@ -2,7 +2,7 @@
 A cli tool that uses Maven's API to get info about Maven artifacts
 
 # Basic Requirements
-* (Suggested) Python3 3.9.6 version
+* (Suggested) Python 3.9.6 version
 * (Suggested) pip 21.1.3 version
 
 # Installation
